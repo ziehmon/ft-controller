@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run application on controller",
+            "type": "shell",
+            "command": "ssh -t ft-controller 'cd /opt/ft-controller && source .venv/bin/activate && python main.py'",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true,
+                "close": false
+
+            }
+        }
+    ]
+}
