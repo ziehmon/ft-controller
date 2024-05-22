@@ -1,45 +1,46 @@
 import time
 import sshkeyboard
+import gpiozero 
 
-from ftpython import ftpython
 
-z_axis = ftpython.Motor(22,23)
-y_axis = ftpython.Motor(24,25)
-x_axis = ftpython.Motor(20,21)
-g_axis = ftpython.Motor(12,13)
+z_axis = gpiozero.Motor(22,23)
+y_axis = gpiozero.Motor(24,25)
+x_axis = gpiozero.Motor(20,21)
+g_axis = gpiozero.Motor(12,13)
 
-def press(key):
+def press_key(key):
+    print(key, "pressed")
     if key == "a":
-        x_axis.left(65)
+        x_axis.forward(1)
     if key == "d":
-        x_axis.right(65)
+        x_axis.backward(1)
     
     if key == "s":
-        y_axis.right(100)
+        y_axis.backward(1)      
     if key == "w":
-        y_axis.left(100)
-
+        y_axis.forward(1)
+        
     if key == "f":
-        z_axis.right(100)
+        z_axis.backward(1)
     if key == "r":
-        z_axis.left(100)
+        z_axis.forward(1)
 
     if key == "t":
-        g_axis.right(100)
-    if key == "g":
-        g_axis.left(100)
-
-    if key == "c":
+        g_axis.backward(1)
         
+    if key == "g":
+        g_axis.forward(1)
+
+    if key == "c":      
         z_axis.stop()
         y_axis.stop()
         x_axis.stop()
         g_axis.stop()
-        ftpython.Shutdown()
         exit()
 
-def release(key):
-    print("Stopping for: ", key)
+def release_key(key):
+    print(key, "released")
+
     if key == "a" or key == "d":
         x_axis.stop()
     
@@ -54,8 +55,8 @@ def release(key):
 
 
 sshkeyboard.listen_keyboard(
-    on_press=press,
-    on_release=release,
-    delay_second_char=0.1,
-    delay_other_chars=0.1,
-)
+     on_press=press_key,
+     on_release=release_key,
+     delay_second_char=0.15,
+     delay_other_chars=0.1,
+ )

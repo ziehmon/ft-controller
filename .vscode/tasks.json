@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Run application on controller",
+            "label": "Controller: run application",
             "type": "shell",
             "command": "ssh -t ft-controller 'cd /opt/ft-controller && source .venv/bin/activate && python main.py'",
             "problemMatcher": [],
@@ -11,10 +11,30 @@
                 "isDefault": true
             },
             "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "showReuseMessage": true,
+                "clear": true,
+                "close": false
+
+            }
+        },
+        {
+            "label": "Controller: install dependencies",
+            "type": "shell",
+            "command": "ssh -t ft-controller 'cd /opt/ft-controller && source .venv/bin/activate && pip install -r requirements.txt && pip freeze'",
+            "problemMatcher": [],
+            "group": {
+                "kind": "none",
+                "isDefault": false
+            },
+            "presentation": {
                 "echo": false,
                 "reveal": "always",
                 "focus": true,
-                "panel": "shared",
+                "panel": "dedicated",
                 "showReuseMessage": true,
                 "clear": true,
                 "close": false
